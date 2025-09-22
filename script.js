@@ -1,3 +1,4 @@
+const imagemTextoEl = document.getElementById("imagemTexto");
 function tempoJuntos(dataInicio) {
     const inicio = new Date(dataInicio);
     const agora = new Date();
@@ -36,7 +37,13 @@ const slides = [
     { type: "video", src: "media/video.mp4", alt: "Vídeo especial" },
     { type: "pedido" }
 ];
-
+const textosPorImagem = [
+    "Aristóteles dizia: `uma alma em dois corpos`. É assim que me sinto ao seu lado.",
+    "Seu sorriso me encanta e não é exagero dize que eu amo cada detalhe em você.",
+    "Quero estar com você em todos os dias. Marco Aurélio dizia que a felicidade depende dos pensamentos — e os meus sempre voltam para você.",
+    "Platão dizia que amar é reconhecer uma beleza que toca o eterno. Em você, eu encontro algo que vai além do tempo.",
+    "Nietzsche dizia: `quem tem um porquê enfrenta qualquer como`. Você é o meu porquê, a cor dos meus dias."
+];
 let currentSlide = 0;
 
 const carousel = document.getElementById("carousel");
@@ -88,6 +95,11 @@ function renderSlide(idx) {
             document.getElementById("btnNao").disabled = true;
             document.getElementById("btnNao").innerText = "😢";
         };
+    }
+    if (slides[idx].type === "img" || slides[idx].type === "video") {
+        imagemTextoEl.textContent = textosPorImagem[idx] || "";
+    } else {
+        imagemTextoEl.textContent = "";
     }
     updateIndicators(idx);
 }
