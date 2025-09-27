@@ -192,7 +192,7 @@ body {
     margin-top: 20px;
 }
 .cora-animado {
-    font-size: 3.5em;
+    font-size: 0.8em;
     animation: pulso 1s infinite alternate;
     display: block;
 }
