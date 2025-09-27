@@ -29,11 +29,50 @@ function iniciarContador() {
 }
 iniciarContador();
 
+const contador2 = () => {
+    const contador2El = document.getElementById("contador2");
+    const inicioISO = "2025-09-28T15:00:00";
+
+function atualizar() {
+    if (!contador2El) return;
+    const inicio = new Date(inicioISO);
+    const agora = new Date();
+    let diff = agora - inicio;
+    if (diff < 0) diff = 0;
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff -= dias * (1000 * 60 * 60 * 24);
+
+    const horas = Math.floor(diff / (1000 * 60 * 60));
+    diff -= horas * (1000 * 60 * 60);
+
+    const minutos = Math.floor(diff / (1000 * 60));
+    diff -= minutos * (1000 * 60);
+
+    const segundos = Math.floor(diff / 1000);
+
+    contador2El.innerText = `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+
+    if (horas > 0) {
+        document.getElementById("longe").innerText = "Infelizmente";
+    } else {
+        document.getElementById("longe").innerText = "Felizmente";
+    }
+}
+
+    atualizar();
+    setInterval(atualizar, 1000);
+    
+};
+contador2();
+
 const slides = [
     { type: "img", src: "media/foto1.jpg", alt: "Foto 1" },
     { type: "img", src: "media/foto2.jpg", alt: "Foto 2" },
     { type: "img", src: "media/foto3.jpg", alt: "Foto 3" },
     { type: "img", src: "media/foto4.jpg", alt: "Foto 4" },
+    {type: "img", src: "media/foto5.jpg", alt: "Foto 5" },
+    {type: "img", src: "media/foto6.jpg", alt: "Foto 6" },
     { type: "video", src: "media/video.mp4", alt: "Vídeo especial" },
     { type: "pedido" }
 ];
@@ -88,7 +127,7 @@ function renderSlide(idx) {
 
         document.getElementById("btnSim").onclick = () => {
             const cora = document.getElementById("coraArea");
-            cora.innerHTML = `<span class="cora-animado">💜</span>`;
+            cora.innerHTML = `<span class="cora-animado">Você já é minha namorada, bobona. </span>`;
             document.querySelector(".pedido-buttons").style.display = "none";
         };
         document.getElementById("btnNao").onclick = () => {
