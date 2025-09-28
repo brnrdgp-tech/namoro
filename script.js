@@ -53,7 +53,7 @@ function atualizar() {
 
     contador2El.innerText = `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
 
-    if (horas > 0) {
+    if (segundos > 0) {
         document.getElementById("longe").innerText = "Infelizmente";
     } else {
         document.getElementById("longe").innerText = "Felizmente";
