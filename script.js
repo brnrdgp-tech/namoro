@@ -31,7 +31,7 @@ iniciarContador();
 
 const contador2 = () => {
     const contador2El = document.getElementById("contador2");
-    const inicioISO = "2025-09-28T15:00:00";
+    const inicioISO = "2025-09-28T17:00:00";
 
 function atualizar() {
     if (!contador2El) return;
