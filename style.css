@@ -208,3 +208,18 @@ body {
     font-weight: 600;
     color: #ffd6f0;
 }
+#showAdminBtn{
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    background: #c8a2ff;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 1.3em;
+    cursor: pointer;
+    box-shadow: 0 1px 6px #391b7070;
+    transition: background 0.2s;
+    color: #18002c;
+}
