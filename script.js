@@ -1,4 +1,43 @@
 const imagemTextoEl = document.getElementById("imagemTexto");
+const showAdminBtn = document.getElementById("showAdminBtn");
+const adminPanel = document.getElementById("adminPanel");
+const atualizaEncontroBtn = document.getElementById("atualizaEncontroBtn");
+const novoEncontro = document.getElementById("novoEncontro");
+const verDatasBtn = document.getElementById("verDatasBtn");
+const jsonDatas = document.getElementById("jsonDatas");
+
+showAdminBtn.onclick = () => {
+    const senha = prompt("Digite a senha secreta:");
+    if (senha === "123") { 
+        adminPanel.style.display = "block";
+        showAdminBtn.style.display = "none";
+    } else {
+        alert("Senha incorreta!");
+    }
+};
+
+verDatasBtn.onclick = () => {
+    let datas = JSON.parse(localStorage.getItem("datasEncontro") || "[]");
+    jsonDatas.textContent = JSON.stringify(datas, null, 2);
+    jsonDatas.style.display = jsonDatas.style.display === "block" ? "none" : "block";
+};
+
+atualizaEncontroBtn.onclick = () => {
+    const dataISO = novoEncontro.value;
+    if (!dataISO) return alert("Escolha a nova data!");
+    salvarEncontro(dataISO);
+    localStorage.setItem("ultimoEncontro", dataISO);
+    contador2();
+    alert("Nova data salva e contador reiniciado!");
+};
+
+function salvarEncontro(dataISO){
+    let datas = JSON.parse(localStorage.getItem("datasEncontros") || "[]");
+    datas.push(dataISO);
+    localStorage.setItem("datasEncontros", JSON.stringify(datas));
+}
+
+
 function tempoJuntos(dataInicio) {
     const inicio = new Date(dataInicio);
     const agora = new Date();
@@ -28,42 +67,43 @@ function iniciarContador() {
     setInterval(atualizar, 1000);
 }
 iniciarContador();
-
-const contador2 = () => {
+function contador2() {
     const contador2El = document.getElementById("contador2");
-    const inicioISO = "2025-09-28T17:12:32";
+    let inicioISO = localStorage.getItem("ultimoEncontro") || "2025-09-28T15:00:00";
 
-function atualizar() {
-    if (!contador2El) return;
-    const inicio = new Date(inicioISO);
-    const agora = new Date();
-    let diff = agora - inicio;
-    if (diff < 0) diff = 0;
+    function atualizar() {
+        if (!contador2El) return;
+        const inicio = new Date(inicioISO);
+        const agora = new Date();
+        let diff = agora - inicio;
+        if (diff < 0) diff = 0;
 
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    diff -= dias * (1000 * 60 * 60 * 24);
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= dias * (1000 * 60 * 60 * 24);
 
-    const horas = Math.floor(diff / (1000 * 60 * 60));
-    diff -= horas * (1000 * 60 * 60);
+        const horas = Math.floor(diff / (1000 * 60 * 60));
+        diff -= horas * (1000 * 60 * 60);
 
-    const minutos = Math.floor(diff / (1000 * 60));
-    diff -= minutos * (1000 * 60);
+        const minutos = Math.floor(diff / (1000 * 60));
+        diff -= minutos * (1000 * 60);
 
-    const segundos = Math.floor(diff / 1000);
+        const segundos = Math.floor(diff / 1000);
 
-    contador2El.innerText = `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+        contador2El.innerText = `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
 
-    if (segundos > 0) {
-        document.getElementById("longe").innerText = "Infelizmente";
-    } else {
-        document.getElementById("longe").innerText = "Felizmente";
+        const longeEl = document.getElementById("longe");
+        if (longeEl) {
+            if (horas > 0) {
+                longeEl.innerText = "Infelizmente";
+            } else {
+                longeEl.innerText = "Felizmente";
+            }
+        }
     }
-}
 
     atualizar();
     setInterval(atualizar, 1000);
-    
-};
+}
 contador2();
 
 const slides = [
