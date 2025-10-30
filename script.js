@@ -69,7 +69,7 @@ function iniciarContador() {
 iniciarContador();
 function contador2() {
     const contador2El = document.getElementById("contador2");
-    let inicioISO = localStorage.getItem("ultimoEncontro") || "2025-10-15T07:12:00";
+    let inicioISO = localStorage.getItem("ultimoEncontro") || "2025-10-26T16:42:00";
 
     function atualizar() {
         if (!contador2El) return;
