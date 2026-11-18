@@ -167,7 +167,7 @@ function renderSlide(idx) {
 
         document.getElementById("btnSim").onclick = () => {
             const cora = document.getElementById("coraArea");
-            cora.innerHTML = `<span class="cora-animado">Você já é minha namorada, bobona. </span>`;
+            cora.innerHTML = `<span class="cora-animado">Você é minha esposa, ótaria. </span>`;
             document.querySelector(".pedido-buttons").style.display = "none";
         };
         document.getElementById("btnNao").onclick = () => {
